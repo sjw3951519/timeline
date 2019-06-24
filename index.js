@@ -4,7 +4,8 @@
     var amonth = ["01月", "02月", "03月", "04月", "05月", "06月", "07月", "08月", "09月", "10月", "11月", "12月"];
     var realType;
         realType = type[0];
-    var timelineBottom = 0; //时间轴底部的横线长度
+    var timelineBottom = 0; //时间轴底部的横线长度;
+    var events = []; //每个时间轴上的时间点 数组对象  对象属性有年月日 以及发生的事件
 
     var gap = [ , 80, 30, 60, 120, 80, 60]    //一格与一格的间距    
 
@@ -81,6 +82,39 @@
             timelineBottom = (parseInt(index) + 1) + "px"
             timeline.style.width = timelineBottom;
 
+            //append时间点对象
+
+            var realEvents = []; //符合该时间轴的时间对象
+            
+            //筛选时间对象
+            for ( let i of events) {
+                if (events[i].year >= days[i].year && events[i].year <= days[days.length - 1]) {
+                    if (events[i].month >= days[i].month && events[days.length - 1]) {
+                        realEvents.push(events[i]);
+                    }
+                }
+            }
+
+
+            var eventPoint = "";
+
+            for ( let x of realEvents) {
+                
+                eventPoint = (
+                    '<div class = "dis-container">' + 
+                        '<div class = "dis">' +
+                            '<div class = "dis-info">' +
+                                '<a href = #' + realEvents.event + '</a>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>'
+                    );
+
+
+            }
+
+            timelinejq.append(eventPoint);
+      
         }
 
         function typeTwo() {
